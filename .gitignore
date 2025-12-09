@@ -70,3 +70,7 @@ coverage.xml
 .book/
 _site/
 _public/
+
+# Node modules
+node_modules/
+package-lock.json
