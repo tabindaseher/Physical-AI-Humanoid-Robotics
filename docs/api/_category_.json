@@ -1,0 +1,8 @@
+{
+  "label": "API Integration",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Vision-Language-Action integration and multi-modal systems"
+  }
+}

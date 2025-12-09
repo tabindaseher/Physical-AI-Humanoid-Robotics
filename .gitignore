@@ -1,0 +1,72 @@
+# Dependencies
+node_modules/
+venv/
+env/
+.venv/
+.env*
+
+# Build outputs
+dist/
+build/
+out/
+target/
+*.log
+*.tmp
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OS files
+.DS_Store
+Thumbs.db
+*.DS_Store*
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.ENV
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/
+!*
+!.gitignore
+
+# Environment specific
+.env
+.env.local
+.env.dev
+.env.test
+.env.prod
+.env.backup
+.env.example
+
+# Docusaurus specific
+.docusaurus/
+.build/
+.cache/
+.temp/
+
+# Documentation build artifacts
+.book/
+_site/
+_public/
