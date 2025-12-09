@@ -21,6 +21,9 @@ const sidebars = {
       collapsed: true,
       items: [
         'frontend/intro-frontend',
+        'frontend/learning-outcomes',
+        'frontend/key-concepts',
+        'frontend/exercises'
       ]
     },
     {

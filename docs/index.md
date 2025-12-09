@@ -28,11 +28,11 @@ This comprehensive guide takes you through the journey of understanding and buil
 
 ### Quick Navigation
 
-- [Getting Started](./intro/index)
-- [Architecture](./architecture/ch2-foundations-humanoid)
-- [Backend Systems](./backend/ch4-digital-twin-gazebo-unity)
-- [API Integration](./api/ch6-vla-integration)
-- [Complete Implementation](./setup/ch7-capstone-autonomous-humanoid)
+- [Getting Started](/docs/intro)
+- [Architecture](/docs/architecture/ch2-foundations-humanoid)
+- [Backend Systems](/docs/backend/ch4-digital-twin-gazebo-unity)
+- [API Integration](/docs/api/ch6-vla-integration)
+- [Complete Implementation](/docs/setup/ch7-capstone-autonomous-humanoid)
 
 ### Target Audience
 
