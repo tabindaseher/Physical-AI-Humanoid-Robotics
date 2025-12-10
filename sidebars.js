@@ -10,10 +10,10 @@ const sidebars = {
       collapsed: false,
       items: [
         'chapter-01/index',
-        'chapter-01/01-intro-physical-ai',
-        'chapter-01/02-learning-outcomes',
-        'chapter-01/03-key-concepts',
-        'chapter-01/04-exercises'
+        'chapter-01/intro-physical-ai',
+        'chapter-01/learning-outcomes',
+        'chapter-01/key-concepts',
+        'chapter-01/exercises'
       ]
     },
     {
@@ -21,10 +21,10 @@ const sidebars = {
       label: 'Chapter 2: Architecture - Foundations of Humanoid Robotics',
       collapsed: false,
       items: [
-        'chapter-02/01-foundations-humanoid',
-        'chapter-02/02-learning-outcomes',
-        'chapter-02/03-key-concepts',
-        'chapter-02/04-exercises'
+        'chapter-02/foundations-humanoid',
+        'chapter-02/learning-outcomes',
+        'chapter-02/key-concepts',
+        'chapter-02/exercises'
       ]
     },
     {
@@ -32,10 +32,10 @@ const sidebars = {
       label: 'Chapter 3: Architecture - ROS2 Nervous System',
       collapsed: false,
       items: [
-        'chapter-03/01-ros2-nervous-system',
-        'chapter-03/02-learning-outcomes',
-        'chapter-03/03-key-concepts',
-        'chapter-03/04-exercises'
+        'chapter-03/ros2-nervous-system',
+        'chapter-03/learning-outcomes',
+        'chapter-03/key-concepts',
+        'chapter-03/exercises'
       ]
     },
     {
@@ -43,10 +43,10 @@ const sidebars = {
       label: 'Chapter 4: Backend - Digital Twin with Gazebo & Unity',
       collapsed: false,
       items: [
-        'chapter-04/01-digital-twin-gazebo-unity',
-        'chapter-04/02-learning-outcomes',
-        'chapter-04/03-key-concepts',
-        'chapter-04/04-exercises'
+        'chapter-04/digital-twin-gazebo-unity',
+        'chapter-04/learning-outcomes',
+        'chapter-04/key-concepts',
+        'chapter-04/exercises'
       ]
     },
     {
@@ -54,10 +54,10 @@ const sidebars = {
       label: 'Chapter 5: Backend - NVIDIA Isaac AI Brain',
       collapsed: false,
       items: [
-        'chapter-05/01-nvidia-isaac-ai-brain',
-        'chapter-05/02-learning-outcomes',
-        'chapter-05/03-key-concepts',
-        'chapter-05/04-exercises'
+        'chapter-05/nvidia-isaac-ai-brain',
+        'chapter-05/learning-outcomes',
+        'chapter-05/key-concepts',
+        'chapter-05/exercises'
       ]
     },
     {
@@ -65,10 +65,10 @@ const sidebars = {
       label: 'Chapter 6: Frontend - User Interfaces',
       collapsed: false,
       items: [
-        'chapter-06/01-intro-frontend',
-        'chapter-06/02-learning-outcomes',
-        'chapter-06/03-key-concepts',
-        'chapter-06/04-exercises'
+        'chapter-06/intro-frontend',
+        'chapter-06/learning-outcomes',
+        'chapter-06/key-concepts',
+        'chapter-06/exercises'
       ]
     },
     {
@@ -76,10 +76,10 @@ const sidebars = {
       label: 'Chapter 7: API Integration - VLA Integration',
       collapsed: false,
       items: [
-        'chapter-07/01-vla-integration',
-        'chapter-07/02-learning-outcomes',
-        'chapter-07/03-key-concepts',
-        'chapter-07/04-exercises'
+        'chapter-07/vla-integration',
+        'chapter-07/learning-outcomes',
+        'chapter-07/key-concepts',
+        'chapter-07/exercises'
       ]
     },
     {
@@ -87,10 +87,10 @@ const sidebars = {
       label: 'Chapter 8: Setup & Deployment',
       collapsed: false,
       items: [
-        'chapter-08/01-capstone-autonomous-humanoid',
-        'chapter-08/02-learning-outcomes',
-        'chapter-08/03-key-concepts',
-        'chapter-08/04-exercises'
+        'chapter-08/capstone-autonomous-humanoid',
+        'chapter-08/learning-outcomes',
+        'chapter-08/key-concepts',
+        'chapter-08/exercises'
       ]
     },
     {
