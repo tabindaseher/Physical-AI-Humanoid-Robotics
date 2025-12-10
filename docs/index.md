@@ -28,11 +28,11 @@ This comprehensive guide takes you through the journey of understanding and buil
 
 ### Quick Navigation
 
-- [Getting Started](/docs/intro)
-- [Architecture](/docs/architecture/ch2-foundations-humanoid)
-- [Backend Systems](/docs/backend/ch4-digital-twin-gazebo-unity)
-- [API Integration](/docs/api/ch6-vla-integration)
-- [Complete Implementation](/docs/setup/ch7-capstone-autonomous-humanoid)
+- [Getting Started](/docs/chapter-01)
+- [Architecture](/docs/chapter-02)
+- [Backend Systems](/docs/chapter-04)
+- [API Integration](/docs/chapter-07)
+- [Complete Implementation](/docs/chapter-08)
 
 ### Target Audience
 
@@ -44,7 +44,7 @@ This book is designed for:
 - Anyone interested in the future of embodied AI
 
 <div className="text--center" style={{ marginTop: '2rem' }}>
-  <a className="button button--primary button--lg" href={useBaseUrl('/docs/intro')}>
+  <a className="button button--primary button--lg" href={useBaseUrl('/docs/chapter-01')}>
     Start Reading
   </a>
 </div>
