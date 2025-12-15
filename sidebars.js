@@ -29,10 +29,10 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Chapter 3: Architecture - ROS2 Nervous System',
+      label: 'Chapter 3: Backend - Digital Twin with Gazebo & Unity',
       collapsed: false,
       items: [
-        'chapter-03/ros2-nervous-system',
+        'chapter-03/digital-twin-gazebo-unity',
         'chapter-03/learning-outcomes',
         'chapter-03/key-concepts',
         'chapter-03/exercises'
@@ -40,10 +40,10 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Chapter 4: Backend - Digital Twin with Gazebo & Unity',
+      label: 'Chapter 4: Backend - The AI-Robot Brain (NVIDIA Isaac)',
       collapsed: false,
       items: [
-        'chapter-04/digital-twin-gazebo-unity',
+        'chapter-04/nvidia-isaac-ai-brain',
         'chapter-04/learning-outcomes',
         'chapter-04/key-concepts',
         'chapter-04/exercises'
@@ -51,10 +51,10 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Chapter 5: Backend - NVIDIA Isaac AI Brain',
+      label: 'Chapter 5: API Integration - Vision-Language-Action (VLA)',
       collapsed: false,
       items: [
-        'chapter-05/nvidia-isaac-ai-brain',
+        'chapter-05/vla-integration',
         'chapter-05/learning-outcomes',
         'chapter-05/key-concepts',
         'chapter-05/exercises'
@@ -62,7 +62,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Chapter 6: Frontend - User Interfaces',
+      label: 'Chapter 6: Frontend - Humanoid Robot Development',
       collapsed: false,
       items: [
         'chapter-06/intro-frontend',
@@ -73,10 +73,10 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Chapter 7: API Integration - VLA Integration',
+      label: 'Chapter 7: API Integration - Conversational Robotics',
       collapsed: false,
       items: [
-        'chapter-07/vla-integration',
+        'chapter-07/conversational-robotics',
         'chapter-07/learning-outcomes',
         'chapter-07/key-concepts',
         'chapter-07/exercises'
@@ -84,7 +84,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Chapter 8: Setup & Deployment',
+      label: 'Chapter 8: Setup & Deployment - Capstone Project - The Autonomous Humanoid',
       collapsed: false,
       items: [
         'chapter-08/capstone-autonomous-humanoid',

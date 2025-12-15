@@ -1,37 +1,37 @@
 ---
 sidebar_position: 1
-title: 'Introduction to Physical AI & Humanoid Robotics'
+title: 'Chapter 1: Introduction to Physical AI'
 ---
 
-# Introduction to Physical AI & Humanoid Robotics
+# Chapter 1: Introduction to Physical AI & Humanoid Robotics
 
-Welcome to the comprehensive guide on Physical AI and Humanoid Robotics. This book covers the cutting-edge intersection of artificial intelligence and robotics, focusing on creating embodied intelligence through humanoid robots.
+Welcome to the first chapter of our comprehensive guide on Physical AI and Humanoid Robotics. This chapter will introduce you to the fundamental concepts that underpin the entire field of embodied artificial intelligence.
 
-## About This Book
+## About This Chapter
 
-This book is designed to take you through the journey of understanding and building humanoid robots using modern AI techniques. We'll explore:
+This chapter is designed to provide you with a solid foundation in Physical AI, covering its definition, historical context, and key principles. By the end of this chapter, you'll understand how Physical AI differs from traditional AI approaches and appreciate the importance of embodiment in intelligent systems.
 
-- The foundations of physical AI
-- ROS2 as the nervous system for robots
-- Digital twins using Gazebo and Unity
-- NVIDIA Isaac as the AI brain
-- Vision-language-action models for robot control
+## Chapter Structure
 
-## Target Audience
+This chapter is organized into the following sections:
 
-This book is intended for:
-- Robotics engineers
-- AI researchers
-- Software developers interested in robotics
-- Students studying AI and robotics
-- Anyone interested in the future of embodied AI
+- **[Introduction to Physical AI](./intro-physical-ai)**: Understanding the definition and scope of Physical AI, its relationship to embodied intelligence, and its applications
+- **[Learning Outcomes](./learning-outcomes)**: Clear objectives that define what you'll be able to accomplish after studying this chapter
+- **[Key Concepts](./key-concepts)**: Detailed explanations of the core ideas that form the foundation of Physical AI
+- **[Exercises](./exercises)**: Practical problems and activities to reinforce your understanding
+
+## Learning Path
+
+After completing this chapter, you'll be well-prepared to move on to Chapter 2, where we'll explore the robotic nervous system using ROS 2. The concepts covered here form the theoretical foundation for all subsequent chapters in this book.
 
 ## Prerequisites
 
-To get the most out of this book, you should have:
-- Basic understanding of programming (Python/C++)
-- Familiarity with Linux environment
-- Basic knowledge of machine learning concepts
-- Interest in robotics and AI
+To get the most out of this chapter, you should have:
 
-Let's begin this exciting journey into the world of Physical AI!
+- Basic understanding of artificial intelligence concepts
+- Familiarity with programming concepts (preferably Python)
+- Interest in robotics and physical systems
+
+## Next Steps
+
+Once you've completed this chapter, continue with our exploration of the robotic nervous system in Chapter 2, where we'll dive into ROS 2 and the communication frameworks that enable Physical AI systems to operate effectively in the real world.

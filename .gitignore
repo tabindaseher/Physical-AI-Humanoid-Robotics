@@ -73,4 +73,7 @@ _public/
 
 # Node modules
 node_modules/
-package-lock.jsonnul
+package-lock.json
+
+# Backend folder - ignored for documentation
+backend/
