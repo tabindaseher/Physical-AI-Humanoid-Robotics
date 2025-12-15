@@ -77,3 +77,5 @@ package-lock.json
 
 # Backend folder - ignored for documentation
 backend/
+"build/" 
+"nul" 
