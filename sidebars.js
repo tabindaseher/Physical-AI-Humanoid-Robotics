@@ -4,6 +4,7 @@
 const sidebars = {
   tutorialSidebar: [
     'index',
+    'chat',
     {
       type: 'category',
       label: 'Chapter 1: Introduction to Physical AI',

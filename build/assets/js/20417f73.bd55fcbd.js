@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkbook=globalThis.webpackChunkbook||[]).push([[9425],{8416:o=>{o.exports=JSON.parse('{"label":"introduction","permalink":"/blog/tags/introduction","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

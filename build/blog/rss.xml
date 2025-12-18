@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Physical AI &amp; Humanoid Robotics Blog</title>
+        <link>https://physical-ai-humanoid-robotics16.vercel.app/blog</link>
+        <description>Physical AI &amp; Humanoid Robotics Blog</description>
+        <lastBuildDate>Wed, 01 Jan 2025 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[Welcome to the Physical AI & Humanoid Robotics Blog]]></title>
+            <link>https://physical-ai-humanoid-robotics16.vercel.app/blog/welcome</link>
+            <guid>https://physical-ai-humanoid-robotics16.vercel.app/blog/welcome</guid>
+            <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[Welcome to the blog for the Physical AI & Humanoid Robotics book! This blog will feature updates, insights, and additional content related to humanoid robotics and physical AI systems.]]></description>
+            <content:encoded><![CDATA[<p>Welcome to the blog for the Physical AI &amp; Humanoid Robotics book! This blog will feature updates, insights, and additional content related to humanoid robotics and physical AI systems.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-to-expect">What to Expect<a href="https://physical-ai-humanoid-robotics16.vercel.app/blog/welcome#what-to-expect" class="hash-link" aria-label="Direct link to What to Expect" title="Direct link to What to Expect">​</a></h2>
+<p>In this blog, you'll find:</p>
+<ul>
+<li>Updates on the latest developments in humanoid robotics</li>
+<li>Tutorials and implementation guides</li>
+<li>Research highlights and case studies</li>
+<li>Tips and tricks for implementing physical AI systems</li>
+<li>Community contributions and discussions</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="about-this-book">About This Book<a href="https://physical-ai-humanoid-robotics16.vercel.app/blog/welcome#about-this-book" class="hash-link" aria-label="Direct link to About This Book" title="Direct link to About This Book">​</a></h2>
+<p>This book covers the comprehensive field of Physical AI and Humanoid Robotics, from foundational concepts to advanced implementations. We explore how artificial intelligence can be embodied in physical systems, with a focus on humanoid robots as the ultimate testbed for integrated AI capabilities.</p>
+<p>Stay tuned for more posts!</p>]]></content:encoded>
+            <category>physical-ai</category>
+            <category>humanoid-robotics</category>
+            <category>introduction</category>
+        </item>
+    </channel>
+</rss>
