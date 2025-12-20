@@ -14,18 +14,22 @@ const RAGChatbot = () => {
 
   // Get backend URL from environment or use default
   const getBackendUrl = () => {
-    // First check for a global configuration
+    // First check for a global configuration (runtime)
     if (typeof window !== 'undefined' && window.BACKEND_URL) {
       return window.BACKEND_URL;
     }
-    // Check for environment variable in build time for Docusaurus
-    // Use typeof to safely check for process existence
+
+    // Check for Docusaurus build-time environment variables
+    // Use NEXT_PUBLIC prefix for Vercel/Docusaurus environment variables
     if (typeof process !== 'undefined' && process.env) {
-      const envUrl = process.env.REACT_APP_BACKEND_URL || process.env.BACKEND_URL;
-      if (envUrl) {
+      const envUrl = process.env.NEXT_PUBLIC_BACKEND_URL ||
+                    process.env.REACT_APP_BACKEND_URL ||
+                    process.env.BACKEND_URL;
+      if (envUrl && envUrl !== 'http://127.0.0.1:8000' && envUrl !== 'localhost:8000') {
         return envUrl;
       }
     }
+
     // Default to the deployed backend URL
     return 'https://physical-ai-backend-u8wr.vercel.app';
   };
