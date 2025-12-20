@@ -12,14 +12,68 @@ const RAGChatbot = () => {
   const [backendStatus, setBackendStatus] = useState('checking'); // 'checking', 'available', 'unavailable'
   const messagesEndRef = useRef(null);
 
+  // Get backend URL from environment or use default
+  const getBackendUrl = () => {
+    // First check for a global configuration
+    if (typeof window !== 'undefined' && window.BACKEND_URL) {
+      return window.BACKEND_URL;
+    }
+    // Check for environment variable in build time for Docusaurus
+    // Use typeof to safely check for process existence
+    if (typeof process !== 'undefined' && process.env) {
+      const envUrl = process.env.REACT_APP_BACKEND_URL || process.env.BACKEND_URL;
+      if (envUrl) {
+        return envUrl;
+      }
+    }
+    // Default to the deployed backend URL
+    return 'https://physical-ai-backend-u8wr.vercel.app';
+  };
+
+  const BACKEND_URL = getBackendUrl();
+
   // Check backend health on component mount
   useEffect(() => {
-    checkBackendHealth();
+    const initializeHealthCheck = async () => {
+      try {
+        await checkBackendHealthWithRetry();
+      } catch (error) {
+        console.error('Error during initial health check:', error);
+        setBackendStatus('unavailable');
+        setMessages(prev => [
+          ...prev.filter(msg => msg.id !== 0),
+          {
+            id: 0,
+            text: `⚠️ Error connecting to backend service at ${BACKEND_URL}. Please ensure the backend is deployed and accessible.`,
+            sender: 'system',
+            type: 'error'
+          }
+        ]);
+      }
+    };
+
+    initializeHealthCheck();
   }, []);
 
   const checkBackendHealth = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/v1/health');
+      // Set a timeout for the health check to handle mobile connectivity issues
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+      const response = await fetch(`${BACKEND_URL}/api/v1/health`, {
+        signal: controller.signal,
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+          'X-Requested-With': 'XMLHttpRequest'  // Help identify as API request
+        }
+      });
+
+      clearTimeout(timeoutId);
+
       if (response.ok) {
         const healthData = await response.json();
         setBackendStatus(healthData.status === 'healthy' || healthData.status === 'degraded' ? 'available' : 'unavailable');
@@ -42,23 +96,37 @@ const RAGChatbot = () => {
           ...prev.filter(msg => msg.id !== 0),
           {
             id: 0,
-            text: "⚠️ Backend service is not available. Please start the backend server first.",
+            text: `⚠️ Backend service is not available at ${BACKEND_URL}. Status: ${response.status} ${response.statusText}`,
             sender: 'system',
             type: 'error'
           }
         ]);
       }
     } catch (error) {
-      setBackendStatus('unavailable');
-      setMessages(prev => [
-        ...prev.filter(msg => msg.id !== 0),
-        {
-          id: 0,
-          text: "⚠️ Cannot connect to backend service. Please ensure the backend server is running at http://localhost:8000",
-          sender: 'system',
-          type: 'error'
-        }
-      ]);
+      // Handle timeout and network errors
+      if (error.name === 'AbortError') {
+        setBackendStatus('unavailable');
+        setMessages(prev => [
+          ...prev.filter(msg => msg.id !== 0),
+          {
+            id: 0,
+            text: `⚠️ Timeout connecting to backend service at ${BACKEND_URL}. The service may be slow to respond or unavailable.`,
+            sender: 'system',
+            type: 'error'
+          }
+        ]);
+      } else {
+        setBackendStatus('unavailable');
+        setMessages(prev => [
+          ...prev.filter(msg => msg.id !== 0),
+          {
+            id: 0,
+            text: `⚠️ Cannot connect to backend service at ${BACKEND_URL}. Network error: ${error.message}`,
+            sender: 'system',
+            type: 'error'
+          }
+        ]);
+      }
     }
   };
 
@@ -81,7 +149,7 @@ const RAGChatbot = () => {
 
       const errorMessage = {
         id: Date.now() + 1,
-        text: "Cannot process your request because the backend service is not available. Please start the backend server first.\n\nTo start the backend:\n1. Open a terminal in the project directory\n2. Run: cd backend\n3. Run: python -c \"import main; print('Main module loaded successfully')\" to check dependencies\n4. Run: uvicorn main:app --reload --host 0.0.0.0 --port 8000\n\nMake sure Qdrant is also running on port 6333.",
+        text: `Cannot process your request because the backend service is not available at ${BACKEND_URL}.\n\nPlease ensure the backend is deployed and accessible.`,
         sender: 'bot',
         type: 'error'
       };
@@ -95,35 +163,48 @@ const RAGChatbot = () => {
     setIsLoading(true);
 
     try {
+      // Set a timeout for the API call to handle mobile connectivity issues
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 45000); // Increased timeout for mobile networks and longer queries
+
       // Send query to backend
-      const response = await fetch('http://localhost:8000/api/v1/rag/book-wide', {
+      const response = await fetch(`${BACKEND_URL}/api/v1/rag/book-wide`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache',
+          'X-Requested-With': 'XMLHttpRequest',  // Help identify as API request
+          'X-Client-Type': 'web-app', // Additional header to identify client type
+          'X-Device-Type': /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop' // Identify device type
         },
         body: JSON.stringify({
           query: inputValue,
           session_id: 'web-session-' + Date.now()
-        })
+        }),
+        signal: controller.signal
       });
 
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
       }
 
       const data = await response.json();
 
       // Check if the response indicates the RAG service is not available
-      if (data.answer.includes("RAG service is not currently available") ||
-          data.answer.includes("Qdrant vector database")) {
+      if (data && data.answer && (data.answer.includes("RAG service is not currently available") ||
+          data.answer.includes("Qdrant vector database") ||
+          data.answer.includes("RAG pipeline broken"))) {
         const botMessage = {
           id: Date.now() + 1,
-          text: data.answer + "\n\n💡 Tip: Make sure Qdrant vector database is running at localhost:6333. Start it with: docker run -d --name qdrant -p 6333:6333 qdrant/qdrant",
+          text: data.answer + `\n\n💡 Tip: The backend is deployed at ${BACKEND_URL}.`,
           sender: 'bot',
           type: 'info'
         };
         setMessages(prev => [...prev, botMessage]);
-      } else {
+      } else if (data && data.answer) {
         const botMessage = {
           id: Date.now() + 1,
           text: data.answer,
@@ -133,12 +214,31 @@ const RAGChatbot = () => {
         };
 
         setMessages(prev => [...prev, botMessage]);
+      } else {
+        // Handle unexpected response format
+        const botMessage = {
+          id: Date.now() + 1,
+          text: "Sorry, I received an unexpected response from the backend. Please try again.",
+          sender: 'bot',
+          type: 'error'
+        };
+        setMessages(prev => [...prev, botMessage]);
       }
     } catch (error) {
       console.error('Error sending message:', error);
+      let errorMessageText = `Error connecting to the backend at ${BACKEND_URL}: `;
+
+      if (error.name === 'AbortError') {
+        errorMessageText += "Request timed out. The backend may be slow to respond or unavailable. This is common on mobile networks. Please try again.";
+      } else if (error.message && (error.message.includes('NetworkError') || error.message.includes('Failed to fetch'))) {
+        errorMessageText += "Network connection failed. Please check your internet connection and try again. This is common on mobile networks.";
+      } else {
+        errorMessageText += error.message ? `${error.message}. Please ensure the backend is deployed and accessible.` : "An unknown error occurred. Please try again.";
+      }
+
       const errorMessage = {
         id: Date.now() + 1,
-        text: `Error connecting to the backend: ${error.message}. Please ensure the backend server is running at http://localhost:8000`,
+        text: errorMessageText,
         sender: 'bot',
         type: 'error'
       };
@@ -160,8 +260,123 @@ const RAGChatbot = () => {
     setBackendStatus('checking');
     setMessages(prev => prev.filter(msg => msg.type !== 'error' && msg.type !== 'warning'));
     setTimeout(() => {
-      checkBackendHealth();
+      const refreshHealth = async () => {
+        try {
+          await checkBackendHealthWithRetry();
+        } catch (error) {
+          console.error('Error during refresh health check:', error);
+          setBackendStatus('unavailable');
+          setMessages(prev => [
+            ...prev.filter(msg => msg.id !== 0),
+            {
+              id: 0,
+              text: `⚠️ Error connecting to backend service at ${BACKEND_URL}. Please ensure the backend is deployed and accessible.`,
+              sender: 'system',
+              type: 'error'
+            }
+          ]);
+        }
+      };
+      refreshHealth();
     }, 1000);
+  };
+
+  // Enhanced health check with retry logic for mobile devices
+  const checkBackendHealthWithRetry = async (maxRetries = 3) => {
+    // Prevent multiple concurrent health checks
+    if (backendStatus === 'checking') {
+      return;
+    }
+
+    setBackendStatus('checking');
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        // Set a timeout for the health check to handle mobile connectivity issues
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // Increased timeout for mobile networks
+
+        const response = await fetch(`${BACKEND_URL}/api/v1/health`, {
+          signal: controller.signal,
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
+            'X-Requested-With': 'XMLHttpRequest', // Help identify as API request
+            'X-Client-Type': 'web-app', // Additional header to identify client type
+            'X-Device-Type': /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop' // Identify device type
+          }
+        });
+
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          const healthData = await response.json();
+          setBackendStatus(healthData.status === 'healthy' || healthData.status === 'degraded' ? 'available' : 'unavailable');
+
+          // If backend is degraded, we might still be able to use it but with limitations
+          if (healthData.status === 'degraded') {
+            setMessages(prev => [
+              ...prev.filter(msg => msg.id !== 0), // Remove any existing warning message
+              {
+                id: 0,
+                text: "⚠️ Backend is running but in degraded mode. Vector database may not be connected. Some features might be limited.",
+                sender: 'system',
+                type: 'warning'
+              }
+            ]);
+          }
+          return; // Success, exit the retry loop
+        } else {
+          console.warn(`Health check attempt ${attempt} failed with status: ${response.status}`);
+          if (attempt === maxRetries) {
+            setBackendStatus('unavailable');
+            setMessages(prev => [
+              ...prev.filter(msg => msg.id !== 0),
+              {
+                id: 0,
+                text: `⚠️ Backend service is not available at ${BACKEND_URL}. Status: ${response.status} ${response.statusText}`,
+                sender: 'system',
+                type: 'error'
+              }
+            ]);
+          }
+        }
+      } catch (error) {
+        console.warn(`Health check attempt ${attempt} failed:`, error);
+        if (attempt === maxRetries) {
+          // Handle timeout and network errors
+          if (error.name === 'AbortError') {
+            setBackendStatus('unavailable');
+            setMessages(prev => [
+              ...prev.filter(msg => msg.id !== 0),
+              {
+                id: 0,
+                text: `⚠️ Timeout connecting to backend service at ${BACKEND_URL}. The service may be slow to respond or unavailable. This is common on mobile networks.`,
+                sender: 'system',
+                type: 'error'
+              }
+            ]);
+          } else {
+            setBackendStatus('unavailable');
+            setMessages(prev => [
+              ...prev.filter(msg => msg.id !== 0),
+              {
+                id: 0,
+                text: `⚠️ Cannot connect to backend service at ${BACKEND_URL}. Network error: ${error.message || 'Connection failed'}. This is common on mobile networks.`,
+                sender: 'system',
+                type: 'error'
+              }
+            ]);
+          }
+        } else {
+          // Wait before retrying (exponential backoff) - longer delays for mobile
+          const delay = /Mobi|Android/i.test(navigator.userAgent) ? 2000 * attempt : 1000 * attempt; // Longer delays for mobile
+          await new Promise(resolve => setTimeout(resolve, delay));
+        }
+      }
+    }
   };
 
   return (
@@ -414,7 +629,7 @@ const RAGChatbot = () => {
                 color: '#DC2626',
                 textAlign: 'center'
               }}>
-                Backend is offline. Run: cd backend && uvicorn main:app --reload
+                Backend is at: {BACKEND_URL}
               </div>
             )}
           </div>
