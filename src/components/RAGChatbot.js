@@ -25,13 +25,13 @@ const RAGChatbot = () => {
       const envUrl = process.env.NEXT_PUBLIC_BACKEND_URL ||
                     process.env.REACT_APP_BACKEND_URL ||
                     process.env.BACKEND_URL;
-      if (envUrl && envUrl !== 'http://127.0.0.1:8000' && envUrl !== 'localhost:8000') {
+      if (envUrl) {
         return envUrl;
       }
     }
 
-    // Default to the deployed backend URL
-    return 'https://physical-ai-backend-u8wr.vercel.app';
+    // Default to localhost for development if no environment variable is set
+    return 'http://localhost:8000';
   };
 
   const BACKEND_URL = getBackendUrl();
@@ -39,21 +39,7 @@ const RAGChatbot = () => {
   // Check backend health on component mount
   useEffect(() => {
     const initializeHealthCheck = async () => {
-      try {
-        await checkBackendHealthWithRetry();
-      } catch (error) {
-        console.error('Error during initial health check:', error);
-        setBackendStatus('unavailable');
-        setMessages(prev => [
-          ...prev.filter(msg => msg.id !== 0),
-          {
-            id: 0,
-            text: `⚠️ Error connecting to backend service at ${BACKEND_URL}. Please ensure the backend is deployed and accessible.`,
-            sender: 'system',
-            type: 'error'
-          }
-        ]);
-      }
+      await checkBackendHealthWithRetry();
     };
 
     initializeHealthCheck();
@@ -71,8 +57,7 @@ const RAGChatbot = () => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache',
-          'X-Requested-With': 'XMLHttpRequest'  // Help identify as API request
+          'Cache-Control': 'no-cache'
         }
       });
 
@@ -177,10 +162,7 @@ const RAGChatbot = () => {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Cache-Control': 'no-cache',
-          'X-Requested-With': 'XMLHttpRequest',  // Help identify as API request
-          'X-Client-Type': 'web-app', // Additional header to identify client type
-          'X-Device-Type': /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop' // Identify device type
+          'Cache-Control': 'no-cache'
         },
         body: JSON.stringify({
           query: inputValue,
@@ -286,7 +268,7 @@ const RAGChatbot = () => {
   };
 
   // Enhanced health check with retry logic for mobile devices
-  const checkBackendHealthWithRetry = async (maxRetries = 3) => {
+  const checkBackendHealthWithRetry = async (maxRetries = 2) => {
     // Prevent multiple concurrent health checks
     if (backendStatus === 'checking') {
       return;
@@ -296,9 +278,9 @@ const RAGChatbot = () => {
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        // Set a timeout for the health check to handle mobile connectivity issues
+        // Set a timeout for the health check to handle connectivity issues
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000); // Increased timeout for mobile networks
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
         const response = await fetch(`${BACKEND_URL}/api/v1/health`, {
           signal: controller.signal,
@@ -306,10 +288,7 @@ const RAGChatbot = () => {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Cache-Control': 'no-cache',
-            'X-Requested-With': 'XMLHttpRequest', // Help identify as API request
-            'X-Client-Type': 'web-app', // Additional header to identify client type
-            'X-Device-Type': /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop' // Identify device type
+            'Cache-Control': 'no-cache'
           }
         });
 
@@ -331,7 +310,7 @@ const RAGChatbot = () => {
               }
             ]);
           }
-          return; // Success, exit the retry loop
+          return Promise.resolve(); // Success, exit the retry loop
         } else {
           console.warn(`Health check attempt ${attempt} failed with status: ${response.status}`);
           if (attempt === maxRetries) {
@@ -357,7 +336,7 @@ const RAGChatbot = () => {
               ...prev.filter(msg => msg.id !== 0),
               {
                 id: 0,
-                text: `⚠️ Timeout connecting to backend service at ${BACKEND_URL}. The service may be slow to respond or unavailable. This is common on mobile networks.`,
+                text: `⚠️ Timeout connecting to backend service at ${BACKEND_URL}. The service may be slow to respond or unavailable.`,
                 sender: 'system',
                 type: 'error'
               }
@@ -368,16 +347,15 @@ const RAGChatbot = () => {
               ...prev.filter(msg => msg.id !== 0),
               {
                 id: 0,
-                text: `⚠️ Cannot connect to backend service at ${BACKEND_URL}. Network error: ${error.message || 'Connection failed'}. This is common on mobile networks.`,
+                text: `⚠️ Cannot connect to backend service at ${BACKEND_URL}. Network error: ${error.message || 'Connection failed'}.`,
                 sender: 'system',
                 type: 'error'
               }
             ]);
           }
         } else {
-          // Wait before retrying (exponential backoff) - longer delays for mobile
-          const delay = /Mobi|Android/i.test(navigator.userAgent) ? 2000 * attempt : 1000 * attempt; // Longer delays for mobile
-          await new Promise(resolve => setTimeout(resolve, delay));
+          // Wait before retrying
+          await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
         }
       }
     }
