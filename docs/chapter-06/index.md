@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 6: Frontend - Humanoid Robot Development'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 6: Frontend - Humanoid Robot Development
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-06-frontend.svg')}
+    alt="Humanoid Robot Development"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 In this chapter, we'll explore the development of humanoid robots, which represent one of the most challenging and exciting domains in robotics. Humanoid robots are designed to mimic human form and function, providing unique capabilities for human interaction and environment compatibility.
 

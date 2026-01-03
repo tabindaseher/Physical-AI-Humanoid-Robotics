@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 3: Backend - Digital Twin with Gazebo & Unity'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 3: Backend - Digital Twin with Gazebo & Unity
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-03-digital-twin.svg')}
+    alt="Digital Twin Concept"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 In this chapter, we'll explore digital twin technology, which creates virtual replicas of physical robots and systems. Digital twins are essential components of Physical AI systems, providing safe and efficient environments for testing, training, and validation.
 

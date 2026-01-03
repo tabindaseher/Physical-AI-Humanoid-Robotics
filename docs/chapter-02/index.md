@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 2: Architecture - Foundations of Humanoid Robotics'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 2: Architecture - Foundations of Humanoid Robotics (ROS 2)
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-02-humanoid-robotics.svg')}
+    alt="Humanoid Robotics"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 In this chapter, we'll explore ROS 2 (Robot Operating System 2), which serves as the nervous system of modern robotics applications. Understanding ROS 2 is critical for Physical AI systems as it provides the communication infrastructure that enables different components to interact effectively.
 

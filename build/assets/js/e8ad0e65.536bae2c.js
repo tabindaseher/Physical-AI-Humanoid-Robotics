@@ -1,1 +1,0 @@
-"use strict";(globalThis.webpackChunkbook=globalThis.webpackChunkbook||[]).push([[8685],{6017:a=>{a.exports=JSON.parse('{"label":"physical-ai","permalink":"/blog/tags/physical-ai","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

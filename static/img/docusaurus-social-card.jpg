@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#f0f8ff"/>
+  <text x="200" y="100" font-family="Arial" font-size="20" fill="#2e8555" text-anchor="middle">Docusaurus Social Card</text>
+  <text x="200" y="130" font-family="Arial" font-size="16" fill="#555" text-anchor="middle">Physical AI & Humanoid Robotics</text>
+</svg>

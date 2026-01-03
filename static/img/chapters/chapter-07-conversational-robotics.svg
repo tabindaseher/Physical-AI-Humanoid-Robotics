@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#e8eaf6"/>
+  <circle cx="120" cy="100" r="40" fill="#3f51b5"/>
+  <path d="M 160 100 Q 220 60 280 100 Q 220 140 160 100 Z" fill="#ff4081"/>
+  <text x="120" y="105" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Robot</text>
+  <text x="220" y="105" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Human</text>
+  <path d="M 150 80 Q 180 60 210 80" stroke="#3f51b5" stroke-width="3" fill="none"/>
+  <path d="M 150 120 Q 180 140 210 120" stroke="#ff4081" stroke-width="3" fill="none"/>
+  <text x="200" y="180" font-family="Arial" font-size="16" fill="#303f9f" text-anchor="middle">Conversational Robotics</text>
+</svg>

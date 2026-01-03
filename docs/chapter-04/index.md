@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 4: Backend - The AI-Robot Brain (NVIDIA Isaac)'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 4: Backend - The AI-Robot Brain (NVIDIA Isaac)
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-04-ai-brain.svg')}
+    alt="AI Brain Concept"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 In this chapter, we'll explore NVIDIA Isaac, which serves as the AI brain for intelligent robotic systems. Isaac provides comprehensive tools for AI integration, simulation, and deployment in robotics applications.
 

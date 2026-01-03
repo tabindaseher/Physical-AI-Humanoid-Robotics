@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 7: API Integration - Conversational Robotics'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 7: API Integration - Conversational Robotics
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-07-conversational-robotics.svg')}
+    alt="Conversational Robotics"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 In this chapter, we'll explore conversational robotics, which integrates natural language processing, speech recognition, and dialogue management systems to enable human-like interaction with robots. Conversational robots can engage in multi-turn dialogues, understand context, and respond appropriately to natural language input.
 

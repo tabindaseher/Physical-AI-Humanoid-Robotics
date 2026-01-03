@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 1: Introduction to Physical AI'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 1: Introduction to Physical AI & Humanoid Robotics
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-01-physical-ai.svg')}
+    alt="Physical AI Concept"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 Welcome to the first chapter of our comprehensive guide on Physical AI and Humanoid Robotics. This chapter will introduce you to the fundamental concepts that underpin the entire field of embodied artificial intelligence.
 

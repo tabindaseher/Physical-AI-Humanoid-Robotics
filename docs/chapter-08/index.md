@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 8: Setup & Deployment - Capstone Project - The Autonomous Humanoid'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 8: Setup & Deployment - Capstone Project - The Autonomous Humanoid
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-08-autonomous-humanoid.svg')}
+    alt="Autonomous Humanoid Robot"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 In this capstone chapter, we'll integrate all the concepts learned throughout the book to create a complete autonomous humanoid robot system. This chapter brings together physical AI principles, ROS 2 architecture, digital twin simulation, AI-robot brain integration, vision-language-action systems, humanoid robot development, and conversational robotics into a fully functional system.
 

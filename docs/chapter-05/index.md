@@ -3,7 +3,17 @@ sidebar_position: 1
 title: 'Chapter 5: API Integration - Vision-Language-Action (VLA)'
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Chapter 5: API Integration - Vision-Language-Action (VLA)
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '2rem' }}>
+  <img
+    src={useBaseUrl('/img/chapters/chapter-05-vla-integration.svg')}
+    alt="Vision-Language-Action Integration"
+    style={{ maxWidth: '500px', height: 'auto', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
 In this chapter, we'll explore Vision-Language-Action (VLA) systems, which represent the integration of visual perception, natural language understanding, and physical action in robotics. VLA systems enable robots to understand and respond to natural language commands while perceiving and acting in the physical world.
 

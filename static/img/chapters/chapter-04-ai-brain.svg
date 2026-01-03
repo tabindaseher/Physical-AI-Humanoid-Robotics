@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#f3e5f5"/>
+  <circle cx="200" cy="100" r="70" fill="#9c27b0"/>
+  <circle cx="160" cy="80" r="10" fill="#e1bee7"/>
+  <circle cx="240" cy="80" r="10" fill="#e1bee7"/>
+  <circle cx="180" cy="120" r="10" fill="#e1bee7"/>
+  <circle cx="220" cy="120" r="10" fill="#e1bee7"/>
+  <circle cx="200" cy="60" r="10" fill="#e1bee7"/>
+  <circle cx="200" cy="140" r="10" fill="#e1bee7"/>
+  <circle cx="140" cy="100" r="10" fill="#e1bee7"/>
+  <circle cx="260" cy="100" r="10" fill="#e1bee7"/>
+  <text x="200" y="180" font-family="Arial" font-size="16" fill="#4a148c" text-anchor="middle">AI Brain</text>
+</svg>
