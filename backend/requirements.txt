@@ -1,0 +1,15 @@
+fastapi==0.105.0
+uvicorn[standard]==0.25.0
+openai==1.3.8
+qdrant-client==1.8.0
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+pydantic==2.5.0
+python-dotenv==1.0.0
+tiktoken==0.5.2
+ Instructor-Embedding==1.0.1
+sentence-transformers==2.2.2
+numpy==1.24.3
+pandas==2.1.4
+asyncio==3.4.3
+httpx==0.25.2

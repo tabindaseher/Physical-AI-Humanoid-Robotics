@@ -1,0 +1,195 @@
+```yaml
+openapi: 3.0.0
+info:
+  title: Textbook Content API
+  version: 1.0.0
+  description: API for textbook content management and retrieval
+paths:
+  /api/chapters:
+    get:
+      summary: Get all textbook chapters
+      responses:
+        '200':
+          description: List of chapters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chapter'
+  /api/chapters/{slug}:
+    get:
+      summary: Get a specific chapter by slug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Chapter content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+        '404':
+          description: Chapter not found
+  /api/references:
+    get:
+      summary: Get all references
+      responses:
+        '200':
+          description: List of references
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reference'
+  /api/chat:
+    post:
+      summary: Submit a query to the RAG chatbot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Chatbot response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '400':
+          description: Invalid request
+
+components:
+  schemas:
+    Chapter:
+      type: object
+      required:
+        - id
+        - name
+        - slug
+        - module
+        - content
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the chapter
+        name:
+          type: string
+          description: Title of the chapter
+        slug:
+          type: string
+          description: URL-friendly identifier
+        module:
+          type: string
+          description: Associated module
+        content:
+          type: string
+          description: Markdown content of the chapter
+        metadata:
+          type: object
+          description: Additional information
+        references:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reference'
+        learning_objectives:
+          type: array
+          items:
+            type: string
+        prerequisites:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+    Reference:
+      type: object
+      required:
+        - id
+        - type
+        - title
+        - authors
+        - year
+        - created_at
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+        type:
+          type: string
+          description: Type of source
+          enum: [journal, conference, book, documentation, preprint, thesis]
+        title:
+          type: string
+          description: Title of the source
+        authors:
+          type: array
+          items:
+            type: string
+        year:
+          type: number
+          description: Publication year
+        url:
+          type: string
+          description: URL to the source
+        doi:
+          type: string
+          description: Digital Object Identifier
+        abstract:
+          type: string
+          description: Brief summary
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of creation
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The user's question
+        context:
+          type: string
+          description: Optional context (chapter slug or section)
+        user_id:
+          type: string
+          description: Anonymous user identifier
+    QueryResponse:
+      type: object
+      required:
+        - response
+        - sources
+        - confidence
+      properties:
+        response:
+          type: string
+          description: The chatbot's response to the query
+        sources:
+          type: array
+          items:
+            type: string
+            description: References used to generate the response
+        confidence:
+          type: number
+          description: Confidence score (0-1)
+        context_used:
+          type: string
+          description: Context from the textbook that was used
+```

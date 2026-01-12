@@ -1,0 +1,40 @@
+.citation {
+  margin: 10px 0;
+  padding: 8px 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.citationText {
+  display: block;
+}
+
+.inlineCitation {
+  color: #25c2a0;
+  font-size: 0.9em;
+  margin: 0 2px;
+}
+
+.bibliography {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.bibliography h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.bibliographyItem {
+  margin-bottom: 12px;
+  padding-left: 20px;
+  text-indent: -20px;
+}
+
+@media print {
+  .citation {
+    font-size: 0.9em;
+  }
+}

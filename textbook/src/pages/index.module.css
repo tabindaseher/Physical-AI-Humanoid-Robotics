@@ -1,0 +1,54 @@
+/**
+ * CSS modules
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem 0;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.bookIcon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.features {
+  padding: 4rem 0;
+  background-color: #f9f9f9;
+}
+
+.features h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.features p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.features .col {
+  text-align: center;
+  padding: 1rem;
+}
+
+.features .col:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
